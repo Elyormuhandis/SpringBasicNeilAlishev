@@ -5,7 +5,10 @@
     <bean id="musicBean" class="uz.muhandis.RockMusic"/>
     <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer">
         <property name="music" ref="musicBean"/>
+        <property name="name"  value="AIMP3"/>
+        <property name="volume" value="40"/>
     </bean>
+
     <!-- ###########################Dependency injection by setter ############################
    musicBeanni Spring xml config yordamida yaratib,
    musicPlayerBean setMusic methodiga reference orqali berib yuboryapti,
