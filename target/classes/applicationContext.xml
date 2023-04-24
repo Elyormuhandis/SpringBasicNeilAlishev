@@ -4,6 +4,12 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="musicBean" class="uz.muhandis.RockMusic"/>
     <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer">
-        <constructor-arg ref="musicBean"/>
+        <property name="music" ref="musicBean"/>
     </bean>
+    <!-- ###########################Dependency injection by setter ############################
+   musicBeanni Spring xml config yordamida yaratib,
+   musicPlayerBean setMusic methodiga reference orqali berib yuboryapti,
+   bu ham o'z navbatida dependency injection deyiladi(DI)
+   ##################################################################################
+   -->
 </beans>
