@@ -5,9 +5,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="musicPlayer.properties"/>
-    <bean id="musicBean" class="uz.muhandis.RockMusic"/>
+    <bean id="rockMusicBean" class="uz.muhandis.RockMusic"/>
+    <bean id="classicalMusicBean" class="uz.muhandis.ClassicalMusic"/>
+    <bean id="popMusicBean" class="uz.muhandis.PopMusic"/>
     <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer">
-        <property name="music" ref="musicBean"/>
+        <property name="musicList">
+                <list>
+                    <ref bean="classicalMusicBean"/>
+                    <ref bean="rockMusicBean"/>
+                    <ref bean="popMusicBean"/>
+                </list>
+        </property>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
