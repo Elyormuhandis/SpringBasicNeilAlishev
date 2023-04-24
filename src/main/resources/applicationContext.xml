@@ -6,8 +6,8 @@
     <bean id="musicBean" class="uz.muhandis.RockMusic"/>
     <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer">
         <property name="music" ref="musicBean"/>
-        <property name="name" value="AIMP3"/>
-        <property name="volume" value="40"/>
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 
     <!-- ###########################Dependency injection by setter ############################
