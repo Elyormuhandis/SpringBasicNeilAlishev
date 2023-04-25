@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="musicPlayer.properties"/>
     <bean id="rockMusicBean" class="uz.muhandis.RockMusic"/>
     <bean id="classicalMusicBean" class="uz.muhandis.ClassicalMusic"/>
     <bean id="popMusicBean" class="uz.muhandis.PopMusic"/>
-    <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer">
+    <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer"
+
+          init-method="musicPlayerInitMethod"
+          destroy-method="musicPlayerDestroyMethod"
+    ><!-- Tepadagi init-method bean yaratilishidan avval ishga tushadi
+          init-methodda odatda initialize, bazaga bog'lanish, tashqi resurslarga
+          ulanishni amalga oshirish mumkin.
+          destroy-method bean Spring app to'xtashidan avval bean yo'q bo'lib ketishida ishga tushadi
+          destroy-methodda resurslarni tozalash, kirish-chiqish oqimlarni yopish, DBda dostupni yopish
+          amalga oshirilishi mumkin.
+           init-method va destroy mehtodlarni nomi istalgancha qo'yiladi,
+          access modifier public protected package-private private bo'lishi mumkin,
+          argument qabul qilmaydi, return type void yoki boshqa type bo'lishi mumkin(ko'proq void),
+          lekin baribir return valuega not access.
+          scope="prototype" beanlarga spring destroy method chaqirmaydi.
+     -->
         <property name="musicList">
-                <list>
-                    <ref bean="classicalMusicBean"/>
-                    <ref bean="rockMusicBean"/>
-                    <ref bean="popMusicBean"/>
-                </list>
+            <list>
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusicBean"/>
+                <ref bean="popMusicBean"/>
+            </list>
         </property>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>

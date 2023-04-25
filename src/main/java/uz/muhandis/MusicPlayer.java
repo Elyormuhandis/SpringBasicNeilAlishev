@@ -40,4 +40,13 @@ public class MusicPlayer {
     public void setVolume(int volume) {
         this.volume = volume;
     }
+
+    //init method
+    public void musicPlayerInitMethod(){
+        System.out.println("This is musicPlayerInitMethod");
+    }
+    //destroy method
+    public void musicPlayerDestroyMethod(){
+        System.out.println("This is musicPlayerDestroyMethod");
+    }
 }
