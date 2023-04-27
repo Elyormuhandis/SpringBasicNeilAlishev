@@ -1,13 +1,15 @@
 package uz.muhandis;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringApp {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
+        );
         MusicPlayer musicPlayerBean = context.getBean(MusicPlayer.class);
         musicPlayerBean.playMusic();
-        System.out.println(musicPlayerBean.getName()+ musicPlayerBean.getVolume());
         PopMusic popMusic1 = context.getBean(PopMusic.class);
         PopMusic popMusic2= context.getBean(PopMusic.class);
         System.out.println(popMusic1==popMusic2);
