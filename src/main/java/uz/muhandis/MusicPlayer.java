@@ -1,19 +1,27 @@
 package uz.muhandis;
 
-import java.util.List;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class MusicPlayer {
+import java.util.List;
+@Component
+public class MusicPlayer implements InitializingBean, DisposableBean {
     private List<Music> musicList;
+    @Value("${musicPlayer.name}")
     private String name;
+    @Value("${musicPlayer.volume}")
     private int volume;
 
 
     public MusicPlayer(){}
 
+    @Autowired
     public MusicPlayer(List<Music> musicList) {
         this.musicList = musicList;
     }
-
     public void setMusicList(List<Music> musicList) {
         this.musicList = musicList;
     }
@@ -42,11 +50,22 @@ public class MusicPlayer {
     }
 
     //init method
+
     public void musicPlayerInitMethod(){
         System.out.println("This is musicPlayerInitMethod");
     }
     //destroy method
     public void musicPlayerDestroyMethod(){
         System.out.println("This is musicPlayerDestroyMethod");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("@PostConstruct deprecated");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("@PreDestroy deprecated");
     }
 }

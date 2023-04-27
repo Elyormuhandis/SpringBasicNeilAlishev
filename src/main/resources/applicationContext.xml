@@ -6,14 +6,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:property-placeholder location="musicPlayer.properties"/>
-    <bean id="rockMusicBean" class="uz.muhandis.RockMusic"/>
-    <bean id="classicalMusicBean" class="uz.muhandis.ClassicalMusic"/>
-    <bean id="popMusicBean" class="uz.muhandis.PopMusic"/>
-    <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer"
+<!--    component-scan base-packageni skanerlaydi va
+kerakli @annotatsiyani beanga aylantiradi va DI qo'llaydi-->
+    <context:component-scan base-package="uz.muhandis"/>
+<!--    <bean id="rockMusicBean" class="uz.muhandis.RockMusic"/>-->
+<!--    <bean id="classicalMusicBean" class="uz.muhandis.ClassicalMusic"/>-->
+<!--    <bean id="popMusicBean" class="uz.muhandis.PopMusic"/>-->
+<!--    <bean id="musicPlayerBean" class="uz.muhandis.MusicPlayer"-->
 
-          init-method="musicPlayerInitMethod"
-          destroy-method="musicPlayerDestroyMethod"
-    ><!-- Tepadagi init-method bean yaratilishidan avval ishga tushadi
+<!--          init-method="musicPlayerInitMethod"-->
+<!--          destroy-method="musicPlayerDestroyMethod" >-->
+    <!-- Tepadagi init-method bean yaratilishidan avval ishga tushadi
           init-methodda odatda initialize, bazaga bog'lanish, tashqi resurslarga
           ulanishni amalga oshirish mumkin.
           destroy-method bean Spring app to'xtashidan avval bean yo'q bo'lib ketishida ishga tushadi
@@ -25,16 +28,16 @@
           lekin baribir return valuega not access.
           scope="prototype" beanlarga spring destroy method chaqirmaydi.
      -->
-        <property name="musicList">
-            <list>
-                <ref bean="classicalMusicBean"/>
-                <ref bean="rockMusicBean"/>
-                <ref bean="popMusicBean"/>
-            </list>
-        </property>
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+<!--        <property name="musicList">-->
+<!--            <list>-->
+<!--                <ref bean="classicalMusicBean"/>-->
+<!--                <ref bean="rockMusicBean"/>-->
+<!--                <ref bean="popMusicBean"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--        <property name="name" value="${musicPlayer.name}"/>-->
+<!--        <property name="volume" value="${musicPlayer.volume}"/>-->
+<!--    </bean>-->
 
     <!-- ###########################Dependency injection by setter ############################
    musicBeanni Spring xml config yordamida yaratib,
